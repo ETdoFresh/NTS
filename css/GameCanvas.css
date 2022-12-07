@@ -1,0 +1,30 @@
+/*noinspection CssInvalidPseudoSelector*/
+:-webkit-full-screen
+{
+    margin: 0;
+    padding: 0;
+    height: 98%;
+}
+
+/*noinspection CssInvalidPseudoSelector*/
+:-moz-full-screen
+{
+    margin: 0;
+    padding: 0;
+    height: 98%;
+}
+
+/*noinspection CssInvalidPseudoSelector*/
+:-ms-fullscreen
+{
+    margin: 0;
+    padding: 0;
+    height: 98%;
+}
+
+:fullscreen
+{
+    margin: 0;
+    padding: 0;
+    height: 98%;
+}

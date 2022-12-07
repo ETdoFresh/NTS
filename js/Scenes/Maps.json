@@ -1,0 +1,170 @@
+{
+"Levels":
+[
+    {
+        "Name": "Level 0 - The Tutorial",
+        "MapWidth": 5120,
+        "MapHeight": 2160,
+        "GameObjects":
+        [
+            { "Id": 0, "Type": "PhysicsWorld" },
+            { "Id": 1, "Type": "GrassBackground" },
+            { "Id": 2, "Type": "TreesLocation" },
+            { "Id": 3, "Type": "MainCamera", "X": 4, "Y": 4 },
+            { "Id": 4, "Type": "WoodenDummy", "X": 1960, "Y": 902 },
+            { "Id": 6, "Type": "Ninja", "X": 300, "Y": 1900, "State": "Meditation", "Life": 100 },
+            { "Id": 7, "Type": "Region", "X": 975, "Y": 1540, "Shape": "Circle", "Radius": 200 },
+            { "Id": 8, "Type": "ShurikenItem", "X": 1260, "Y": 1150 },
+            { "Id": 9, "Type": "SwordItem", "X": 331, "Y": 325 },
+            { "Id": 10, "Type": "Region", "X": 2484, "Y": 536, "Shape": "Circle", "Radius": 450 },
+            { "Id": 11, "Type": "WoodenDummy", "X": 631, "Y": 225 },
+            { "Id": 12, "Type": "WoodenDummy", "X": 846, "Y": 144 },
+            { "Id": 13, "Type": "WoodenDummy", "X": 1099, "Y": 162 },
+            { "Id": 14, "Type": "Bush", "X": 2740, "Y": 550 },
+            { "Id": 15, "Type": "Enemy", "X": 4699, "Y": 318 },
+            { "Id": 16, "Type": "Enemy", "X": 5014, "Y": 471 },
+            { "Id": 17, "Type": "Enemy", "X": 4700, "Y": 630 },
+            { "Id": 18, "Type": "Windmill", "X": 4097, "Y": 1641 },
+            { "Id": 19, "Type": "Bomb", "X": 2530, "Y": 1968 },
+            { "Id": 20, "Type": "Region", "X": 4000, "Y": 1700, "Shape": "Circle", "Radius": 400 },
+            { "Id": 21, "Type": "Region", "X": 4118, "Y": 200, "Shape": "Circle", "Radius": 350 }
+        ],
+        "Triggers":
+        [
+            {
+                "Enabled": true,
+                "Conditions": [{"Type": "Collide", "ObjectA": 6, "ObjectB": 7}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 1},
+                    {"Type": "ShowText", "Text": "Excellent! You are headed the right way!", "Time": 5000},
+                    {"Type": "EnableTrigger", "Trigger": 1}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "Collide", "ObjectA": 6, "ObjectB": 8}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 2},
+                    {"Type": "ShowText", "Text": "Great! Throw Shurikens at Wooden Dummy!", "Time": 5000},
+                    {"Type": "EnableTrigger", "Trigger": 2},
+                    {"Type": "EnableTrigger", "Trigger": 3}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "Collide", "Object": 4, "ObjectType": "Shuriken"}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 3},
+                    {"Type": "ShowText", "Text": "Cool! Let's get a move on!", "Time": 5000}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "Collide", "ObjectA": 6, "ObjectB": 10}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 4},
+                    {"Type": "ShowText", "Text": "Bushes are blocking the way...", "Time": 5000},
+                    {"Type": "EnableTrigger", "Trigger": 4},
+                    {"Type": "EnableTrigger", "Trigger": 2, "IsEnabled": false}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "Collide", "ObjectA": 6, "ObjectB": 9}],
+                "Actions":
+                    [
+                        {"Type": "SetProperty", "Property": "Objective", "Value": 5},
+                        {"Type": "ShowText", "Text": "Great! This should slash those bushes!", "Time": 5000},
+                        {"Type": "EnableTrigger", "Trigger": 5},
+                        {"Type": "EnableTrigger", "Trigger": 6}
+                    ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "NumberEqual", "Object": "WoodenDummy", "Number": 0}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 6},
+                    {"Type": "ShowText", "Text": "You destroyed all wooden dummies!", "Time": 5000}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "NumberEqual", "Object": "Bush", "Number": 0}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 7},
+                    {"Type": "ShowText", "Text": "Be careful, there are enemies ahead!", "Time": 5000},
+                    {"Type": "EnableTrigger", "Trigger": 7},
+                    {"Type": "EnableTrigger", "Trigger": 11},
+                    {"Type": "EnableTrigger", "Trigger": 5, "IsEnabled": false}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "NumberEqual", "Object": "Enemy", "Number": 0}],
+                "Actions":
+                    [
+                        {"Type": "SetProperty", "Property": "Objective", "Value": 0},
+                        {"Type": "ShowText", "Text": "True Ninja Skill! Let's destroy the Barracks!", "Time": 5000},
+                        {"Type": "EnableTrigger", "Trigger": 8},
+                        {"Type": "EnableTrigger", "Trigger": 9},
+                        {"Type": "EnableTrigger", "Trigger": 10}
+                    ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "CollideType", "Object": 18, "ObjectType": "Sword"}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 9},
+                    {"Type": "ShowText", "Text": "Hey, Don Quixote, only a bomb can destroy this!", "Time": 3000}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "Collide", "ObjectA": 6, "ObjectB": 19}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 9},
+                    {"Type": "ShowText", "Text": "An active bomb in the forest?", "Time": 3000},
+                    {"Type": "EnableTrigger", "Trigger": 10}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "Collide", "ObjectA": 6, "ObjectB": 20}],
+                "Actions":
+                [
+                    {"Type": "SetProperty", "Property": "Objective", "Value": 9},
+                    {"Type": "ShowText", "Text": "Huh? There is no Barracks! Oh well, YOU WIN!", "Time": 0},
+                    {"Type": "Create", "Object": "EnemyGenerator", "X": 3000, "Y": 1500, "Width": 1350, "Height": 425,
+                        "MaxEnemies": 50, "TimeSpan": 2000}
+                ]
+            },
+            {
+                "Enabled": false,
+                "Conditions": [{"Type": "Collide", "ObjectA": 6, "ObjectB": 21}],
+                "Actions":
+                    [
+                        {"Type": "SetProperty", "Property": "Objective", "Value": 9},
+                        {"Type": "ShowText", "Text": "Swing your sword fast for more damage!", "Time": 0}
+                    ]
+            }
+        ]
+    },
+    {
+        "Name": "Level 1 - So it begins...",
+        "MapWidth": 640,
+        "MapHeight": 480,
+        "GameObjects":
+        [
+            { "Type": "GrassBackground" }
+        ]
+    }
+]
+}
