@@ -6,7 +6,7 @@
 
 TO PLAY THE GAME, PLEASE GOTO 
 
-http://www.dragndream.com/NTS.html
+https://github.etdofresh.com/NTS/index.html
 
 ##################################
 ##################################
